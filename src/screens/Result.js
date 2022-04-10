@@ -6,7 +6,6 @@ export default function Result ({ navigation }) {
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text style={
         {
-        fontFamily: 'Inter_900Black',
         letterSpacing: 3,
         textAlign: 'center',
         fontWeight: 'bold',

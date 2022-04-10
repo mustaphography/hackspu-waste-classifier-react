@@ -6,6 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Home from './src/screens/Home';
 import Camera from './src/screens/Camera';
 import Result from './src/screens/Result';
+import Mission from './src/screens/Mission';
 
 const Stack = createStackNavigator();
 
@@ -20,6 +21,7 @@ export default function App() {
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Camera" component={Camera} />
         <Stack.Screen name="Result" component={Result} />
+        <Stack.Screen name="Mission" component={Mission} />
       </Stack.Navigator>
     </NavigationContainer>
   );

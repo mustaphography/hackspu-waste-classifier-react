@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, TouchableOpacity, Button } from 'react-native';
 import { useState, useEffect } from 'react';
 // import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Camera } from 'expo-camera';
+import { useFonts, Inter_300Light } from '@expo-google-fonts/inter';
 
 export default function CameraComponent() {
   const ref = useRef(null);
@@ -67,12 +68,12 @@ export default function CameraComponent() {
         <TouchableOpacity onPress={_takePhoto} >
           <Text style={
             {
-            fontFamily: 'Inter_900Black',
+            fontFamily: 'Inter_300Light',
             letterSpacing: 3,
             textAlign: 'center',
             fontWeight: 'bold',
             fontSize: 40,
-            color: 'black',
+            color: '#70cacd',
             marginTop: 15
             }
       }>Analyze!</Text>

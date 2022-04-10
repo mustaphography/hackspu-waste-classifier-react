@@ -93,7 +93,7 @@ export default function Home ({ navigation }) {
           backgroundColor: 'rgb(0, 0, 0, 0)',
         }}
         title="Learn about our mission."
-        onPress={() => navigation.navigate('Camera')}
+        onPress={() => navigation.navigate('Mission')}
       />
       
       <Text style={{

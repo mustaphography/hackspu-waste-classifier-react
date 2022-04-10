@@ -35,13 +35,23 @@ export default function CameraScreen ({ navigation }) {
     return <Text>No access to camera</Text>;
   }
 
+  const _submit = async () => {
+    try {
+      await _takePhoto();
+      navigation.navigate('Result');
+    } catch (error) {
+      console.log(error)
+      //ai data not loaded
+    }
+  }
+
   const _takePhoto = async () => {
     try {
-      navigation.navigate('Camera');
       const photo = await ref.current.takePictureAsync()
       console.debug(photo)
     } catch (error) {
       console.log(error)
+      //ai data not loaded
     }
   }
 
@@ -64,23 +74,36 @@ export default function CameraScreen ({ navigation }) {
       </Camera>
       <View>
         {/*this can be fa icon later*/}
-        <TouchableOpacity onPress={_takePhoto} >
-          <Text style={
-            {
-            fontFamily: 'Inter_900Black',
-            letterSpacing: 3,
-            textAlign: 'center',
-            fontWeight: 'bold',
-            fontSize: 40,
-            color: 'black',
-            marginTop: 15
-            }
-      }>Analyze!</Text>
-      <Button
-        title="See Results ->"
-        onPress={() => navigation.navigate('Result')}
-      />
-        </TouchableOpacity>
+
+      <TouchableOpacity onPress={_submit}
+        style={{
+            borderWidth:2,
+            borderColor:'#70cacd',
+            alignItems:'center',
+            justifyContent:'center',
+            width:130,
+            height:40,
+            backgroundColor:'black',
+            borderRadius:50,
+            color: '#70cacd'
+          }}
+      >
+        
+          <Button
+            titleStyle={{
+              color: '#70cacd',
+              marginTop: 3.5,
+              fontSize: 16,
+              fontFamily: 'Inter_300Light',
+              letterSpacing: 1.5
+            }}
+            buttonStyle={{
+              backgroundColor: 'rgb(0, 0, 0, 0)',
+            }}
+            title="Analyze Now!"
+            onPress={() => navigation.navigate('Camera')}
+          />
+      </TouchableOpacity>
       </View>
     </View>
   );
