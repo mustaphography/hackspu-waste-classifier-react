@@ -1,11 +1,12 @@
 //core
-
+import {Axios} from 'axios';
 import React, { useRef } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Button } from 'react-native';
 import { useState, useEffect } from 'react';
 import { Camera } from 'expo-camera';
 //utils
 import processor from '../services/processor';
+import axios from 'axios';
 
 export default function CameraScreen ({ navigation }) {
   const ref = useRef(null);
@@ -45,7 +46,7 @@ export default function CameraScreen ({ navigation }) {
   const _submit = async () => {
     try {
       await _takePhoto();
-      navigation.navigate('Result');
+     // navigation.navigate('Result');
     } catch (error) {
       console.log(error)
       //ai data not loaded
@@ -55,11 +56,25 @@ export default function CameraScreen ({ navigation }) {
   const _takePhoto = async () => {
     try {
       const photo = await ref.current.takePictureAsync({base64: true})
-      console.log(processor(photo))
-      setResult(processor(photo))
-      console.debug(photo)
+      //console.log(processor(photo))
+      axios.get('http://localhost:4000', {
+        body: {photo}
+      })
+      .then(function (response) {
+        setResult(response)
+      })
+      .catch(function (error) {
+        setResult(response)
+        console.log(error);
+      })
+      .then(function () {
+        setResult(response)
+      });
+      //setResult(processor(photo))
+      //console.debug(photo)
     } catch (error) {
       console.log(error)
+      setResult(response)
       //ai data not loaded
     }
   }
@@ -73,7 +88,7 @@ export default function CameraScreen ({ navigation }) {
         textAlign: 'top',
         fontWeight: 'bold',
         fontSize: 48,
-        top: 40,
+        top: 20,
         color: '#70cacd'
         }
       }>Hmm.. I think this is:</Text>
@@ -84,7 +99,7 @@ export default function CameraScreen ({ navigation }) {
         textAlign: 'top',
         fontWeight: 'bold',
         fontSize: 48,
-        top: 60,
+        top: 40,
         color: '#70cacd'
         }
       }>{result}</Text>
@@ -97,7 +112,7 @@ export default function CameraScreen ({ navigation }) {
                   ? Camera.Constants.Type.front
                   : Camera.Constants.Type.back
               );
-              navigation.navigate('Result')
+              //navigation.navigate('Result')
             }}>
             <Text > Flip </Text>
           </TouchableOpacity>
