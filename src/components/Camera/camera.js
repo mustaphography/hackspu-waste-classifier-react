@@ -1,10 +1,12 @@
-import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import React, { useRef } from 'react';
+import { StyleSheet, Text, View, TouchableOpacity, Button } from 'react-native';
 import { useState, useEffect } from 'react';
 // import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Camera } from 'expo-camera';
 
 export default function CameraComponent() {
+  const ref = useRef(null);
+
   const [hasPermission, setHasPermission] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
 
@@ -34,12 +36,20 @@ export default function CameraComponent() {
     return <Text>No access to camera</Text>;
   }
 
+  const _takePhoto = async () => {
+    try {
+      const photo = await ref.current.takePictureAsync()
+      console.debug(photo)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <View style={styles.container}>
-      <Camera style={styles.camera} type={type}>
+      <Camera style={styles.camera} type={type} ref={ref} >
         <View >
-          <TouchableOpacity
-            
+          <TouchableOpacity           
             onPress={() => {
               setType(
                 type === Camera.Constants.Type.back
@@ -51,6 +61,9 @@ export default function CameraComponent() {
           </TouchableOpacity>
         </View>
       </Camera>
+        <TouchableOpacity onPress={_takePhoto} >
+          <Text>Analyze</Text>
+        </TouchableOpacity>
     </View>
   );
 }
