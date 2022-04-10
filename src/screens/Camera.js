@@ -13,6 +13,9 @@ export default function CameraScreen ({ navigation }) {
   const [hasPermission, setHasPermission] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
 
+  //display result component (temporary)
+  const [result, setResult] = useState('');
+
   const styles = StyleSheet.create({  
     container: {
     flex: 1,
@@ -53,6 +56,7 @@ export default function CameraScreen ({ navigation }) {
     try {
       const photo = await ref.current.takePictureAsync({base64: true})
       console.log(processor(photo))
+      setResult(processor(photo))
       console.debug(photo)
     } catch (error) {
       console.log(error)
@@ -62,6 +66,28 @@ export default function CameraScreen ({ navigation }) {
 
   return (
     <View style={styles.container}>
+      <Text style={
+        {
+        fontFamily: 'Inter_300Light',
+        letterSpacing: 2,
+        textAlign: 'top',
+        fontWeight: 'bold',
+        fontSize: 48,
+        top: 40,
+        color: '#70cacd'
+        }
+      }>Hmm.. I think this is:</Text>
+      <Text style={
+        {
+        fontFamily: 'Inter_300Light',
+        letterSpacing: 2,
+        textAlign: 'top',
+        fontWeight: 'bold',
+        fontSize: 48,
+        top: 60,
+        color: '#70cacd'
+        }
+      }>{result}</Text>
       <Camera style={styles.camera} type={type} ref={ref}>
         <View >
           <TouchableOpacity           
