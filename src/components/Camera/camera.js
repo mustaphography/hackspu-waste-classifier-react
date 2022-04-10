@@ -17,7 +17,7 @@ export default function CameraComponent() {
     alignItems: 'center',
     },
     camera: {
-    height:800,
+    height:700,
     width:450,
     },
   }); 
@@ -56,14 +56,28 @@ export default function CameraComponent() {
                   ? Camera.Constants.Type.front
                   : Camera.Constants.Type.back
               );
+              navigation.navigate('Camera')
             }}>
             <Text > Flip </Text>
           </TouchableOpacity>
         </View>
       </Camera>
+      <View>
+        {/*this can be fa icon later*/}
         <TouchableOpacity onPress={_takePhoto} >
-          <Text>Analyze</Text>
+          <Text style={
+            {
+            fontFamily: 'Inter_900Black',
+            letterSpacing: 3,
+            textAlign: 'center',
+            fontWeight: 'bold',
+            fontSize: 40,
+            color: 'black',
+            marginTop: 15
+            }
+      }>Analyze!</Text>
         </TouchableOpacity>
+      </View>
     </View>
   );
 }

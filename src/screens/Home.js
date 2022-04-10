@@ -18,16 +18,26 @@ export default function Home ({ navigation }) {
       <Text style={
         {
         fontFamily: 'Inter_900Black',
+        letterSpacing: 3,
         textAlign: 'center',
         fontWeight: 'bold',
         fontSize: 40,
         color: '#3a6ce0'
         }
-    }>Waste Classifier</Text>
+      }>Waste Classifier</Text>
       <Button
-        title="Analyze Now"
+        title="Analyze Now!"
         onPress={() => navigation.navigate('Camera')}
       />
+      <Text style={{
+        fontFamily: 'Inter_900Black',
+        letterSpacing: 2,
+        alignItems: 'center',
+        position: 'absolute',
+        bottom: 20
+      }}>
+        Powered by: Junk in the Trunk
+      </Text>
     </View>
   );
 }
