@@ -1,7 +1,11 @@
+//core
+
 import React, { useRef } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Button } from 'react-native';
 import { useState, useEffect } from 'react';
 import { Camera } from 'expo-camera';
+//utils
+import processor from '../services/processor';
 
 export default function CameraScreen ({ navigation }) {
   const ref = useRef(null);
@@ -47,7 +51,8 @@ export default function CameraScreen ({ navigation }) {
 
   const _takePhoto = async () => {
     try {
-      const photo = await ref.current.takePictureAsync()
+      const photo = await ref.current.takePictureAsync({base64: true})
+      console.log(processor(photo))
       console.debug(photo)
     } catch (error) {
       console.log(error)
@@ -57,7 +62,7 @@ export default function CameraScreen ({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Camera style={styles.camera} type={type} ref={ref} >
+      <Camera style={styles.camera} type={type} ref={ref}>
         <View >
           <TouchableOpacity           
             onPress={() => {
@@ -88,21 +93,7 @@ export default function CameraScreen ({ navigation }) {
             color: '#70cacd'
           }}
       >
-        
-          <Button
-            titleStyle={{
-              color: '#70cacd',
-              marginTop: 3.5,
-              fontSize: 16,
-              fontFamily: 'Inter_300Light',
-              letterSpacing: 1.5
-            }}
-            buttonStyle={{
-              backgroundColor: 'rgb(0, 0, 0, 0)',
-            }}
-            title="Analyze Now!"
-            onPress={() => navigation.navigate('Camera')}
-          />
+      <Text>Analyze Now!</Text>
       </TouchableOpacity>
       </View>
     </View>

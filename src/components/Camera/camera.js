@@ -48,6 +48,7 @@ export default function CameraComponent() {
 
   return (
     <View style={styles.container}>
+      
       <Camera style={styles.camera} type={type} ref={ref} >
         <View >
           <TouchableOpacity           
