@@ -15,7 +15,7 @@ export default function App() {
       <Stack.Navigator initialRouteName='dashboard'
     screenOptions={{
         headerStyle: { elevation: 0 },
-        cardStyle: { backgroundColor: '#a8c7ff' }
+        cardStyle: { backgroundColor: 'black' }
     }}>
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Camera" component={Camera} />
